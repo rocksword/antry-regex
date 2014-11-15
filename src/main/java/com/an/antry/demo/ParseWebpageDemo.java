@@ -81,6 +81,34 @@ public class ParseWebpageDemo {
         find500Team(input18);
         System.out.println("\n find500Team from " + input19);
         find500Team(input19);
+
+        String input20 = "<span class=\"match_time\" title=\"开赛时间：2014-11-08 20:45\" style=\"display:none\">20:45</span>";
+        System.out.println("\n find500MatchTime from " + input20);
+        find500MatchTime(input20);
+
+        String input21 = "<span>主胜</span>";
+        System.out.println("\n find500JcWin from " + input21);
+        find500JcWin(input21);
+    }
+
+    private static void find500JcWin(String input) {
+        Pattern p = Pattern.compile(".*<span>(\\d+.\\d+)?%?主胜</span>.*");
+        Matcher m = p.matcher(input);
+        if (m.find()) {
+            System.out.println("result=[" + m.group(1) + "]");
+        } else {
+            System.out.println("Not found.");
+        }
+    }
+
+    private static void find500MatchTime(String input) {
+        Pattern p = Pattern.compile(".*match_time.*：(\\d*-\\d*-\\d*\\s\\d*:\\d*).*");
+        Matcher m = p.matcher(input);
+        if (m.find()) {
+            System.out.println("result=[" + m.group(1).trim() + "]");
+        } else {
+            System.out.println("Not found.");
+        }
     }
 
     private static void find500Team(String input) {
