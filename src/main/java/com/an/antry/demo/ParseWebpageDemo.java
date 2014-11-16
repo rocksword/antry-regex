@@ -89,6 +89,23 @@ public class ParseWebpageDemo {
         String input21 = "<span>主胜</span>";
         System.out.println("\n find500JcWin from " + input21);
         find500JcWin(input21);
+
+        String input22 = "<img src=\"http://liansai.500.com/static/soccerdata/images/CountryPic/nationalflag2_213.png\" title=\"法国\"></td>";
+        String input23 = "<img src=\"http://liansai.500.com/static/soccerdata/images/CountryPic/nationalflag2_236.bmp\" title=\"意大利\"></td>";
+        System.out.println("\n find500NationId from " + input22);
+        find500NationId(input22);
+        System.out.println("\n find500NationId from " + input23);
+        find500NationId(input23);
+    }
+
+    private static void find500NationId(String input) {
+        Pattern p = Pattern.compile(".*nationalflag2_(\\d+).*");
+        Matcher m = p.matcher(input);
+        if (m.find()) {
+            System.out.println("result=[" + m.group(1) + "]");
+        } else {
+            System.out.println("Not found.");
+        }
     }
 
     private static void find500JcWin(String input) {
